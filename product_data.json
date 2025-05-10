@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1  ,
+        "name": "Iphone",
+        "price": 1000 ,
+        "categories": "điện tử",
+        "image": "https://salt.tikicdn.com/ts/tikimsp/ee/10/70/1d457748b261c5499b4814a11ed85488.jpg" ,
+        "sale": 0, 
+        "rate": 0,
+        "time_delivery": "thứ 3 tuần sau"
+    }
+]

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+    <title>
+        Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh
+    </title>
+    <link rel="shortcut icon" type="image/png" href="./Asset/index/picture/tikilogo_title.png">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Ulkit -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+        integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Chèn google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- Chèn font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- slickslider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
+        integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
+        integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">    
+    <!-- index.css -->
+    <link rel="stylesheet" href="index.css">
+    
+</head>
+
+<body data-aos="fade-up"
+data-aos-duration="3000">
+    <!-- modal -->
+    
+    <header>
+        <div class="header_container">
+            <div class="logo_container">
+                <a href="">
+                    <img src="./Asset/index/picture/logo.png" alt="Logo">
+                    <span>Tốt & Nhanh</span>
+                </a>
+            </div>
+            <div class="searchbar_container">
+                <div class="top">
+                    <div class="searchbar">
+                        <img src="./Asset/index/picture/i_search.png" alt="">
+                        <input type="text" value="" placeholder="Giao nhanh 2H & đúng khung giờ"
+                            id="search_input_value">
+                        <a href="">
+                            <button id="search_find" href="">Tìm kiếm</button>
+                        </a>
+                    </div>
+                    <div class="more" id ="more">
+                        <a href="">
+                            <button id="home">
+                                <img src="./Asset/index/picture/home.png" alt="">
+                                <span>Trang chủ</span>
+                            </button>
+                        </a>
+                            <button  id="user" style ="width: 100px;height: 42.4px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; text-overflow:clip;">
+                                <a href="./signin.html" id ="link_login" style = "display:flex">
+                                    <img src="./Asset/index/picture/user.png" alt="">
+                                    <div id ="account_name" style = "color:grey;font-weight: 500;font-size: 14px;margin-left: 5px;padding-right:16px;">
+                                        Tài khoản
+                                    </div>
+                                </a>
+                            </button>
+                        <div id = "btn_logout" style ="display: none;font-size: 20px;margin-left: 12px;">
+                                <div class="c   ol_line"></div>
+                                
+                                    <button  onclick = "logout()" id = "logout" style ="padding: 4px 12px;">
+                                        <i class="fa-solid fa-right-from-bracket fa-rotate-by" style="color:grey; --fa-rotate-angle: 0deg;"></i>
+                                    </button>
+                                
+                        </div>
+                        <div class="giohang">
+                            <div class="col_line"></div>
+                            <a href="./order.html">
+                                <button id="cart">
+                                    <img src="./Asset/index/picture/cart.png" alt="">
+                                    <span id="soluong">0</span>
+                                </button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="bot">
+                    <div class="suggest">
+                        <a href="" id="suggest_value" suggest_index="0">điện gia dụng</a>
+                        <a href="" id="suggest_value" suggest_index="1">xe cộ</a>
+                        <a href="" id="suggest_value" suggest_index="2">mẹ & bé</a>
+                        <a href="" id="suggest_value" suggest_index="3">khỏe đẹp</a>
+                        <a href="" id="suggest_value" suggest_index="4">nhà cửa</a>
+                        <a href="" id="suggest_value" suggest_index="5">sách</a>
+                        <a href="" id="suggest_value" suggest_index="6">thể thao</a>
+                    </div>
+                    <div class="delivery">
+                        <img src="./Asset/index/picture/address.png" alt="">
+                        <span>Giao đến:</span>
+                        <a href="" id="address">TP. Thủ Đức, P. Thảo Điền, Hồ Chí Minh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- place navbar here -->
+    </header>
+    
+    <div class="commit">
+        <a href="">
+            <div>
+                <span>Cam kết</span>
+            </div>
+            <div class="muccamket">
+                <div class="part">
+                    <img src="./Asset/index/picture/Camket/1.png" alt="">
+                    <span>100% hàng thật</span>
+                </div>
+            </div>
+            <div class="col_line"></div>
+            <div class="muccamket">
+                <div class="part">
+                    <img src="./Asset/index/picture/Camket/2.png" alt="">
+                    <span>Hoàn 200% nếu hàng giả</span>
+                </div>
+            </div>
+            <div class="col_line"></div>
+            <div class="muccamket">
+                <div class="part">
+                    <img src="./Asset/index/picture/Camket/3.png" alt="">
+                    <span>30 ngày đổi trả</span>
+                </div>
+            </div>
+            <div class="col_line"></div>
+            <div class="muccamket">
+                <div class="part">
+                    <img src="./Asset/index/picture/Camket/4.png" alt="">
+                    <span>Giao nhanh 2h</span>
+                </div>
+            </div>
+            <div class="col_line"></div>
+            <div class="muccamket">
+                <div class="part">
+                    <img src="./Asset/index/picture/Camket/5.png" alt="">
+                    <span>Giá siêu rẻ</span>
+                </div>
+            </div>
+            
+        </a>
+    </div>
+    <main>
+        <div class="b_container">
+            <div class="sidebar1 d-none d-xl-block">
+                <p>Danh mục</p>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/1.png" alt="">
+                        <span>Nhà sách Tiki</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/2.png" alt="">
+                        <span>Nhà Cửa - Đời Sống</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/3.png" alt="">
+                        <span>Điện Thoại - Máy Tính Bảng</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/4.png" alt="">
+                        <span>Đồ Chơi - Mẹ & Bé</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/5.png" alt="">
+                        <span>Thiết Bị Số - Phụ Kiện Số</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/6.png" alt="">
+                        <span>Điện Gia Dụng</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/7.png" alt="">
+                        <span>Làm Đẹp - Sức Khỏe</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/8.png" alt="">
+                        <span>Ô Tô - Xe Máy - Xe Đạp</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/9.png" alt="">
+                        <span>Thời trang nữ</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/10.png" alt="">
+                        <span>Bách Hóa Online</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/11.png" alt="">
+                        <span>Thể Thao - Dã Ngoại</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/12.png" alt="">
+                        <span>Thời trang nam</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/13.png" alt="">
+                        <span>Cross Border - Hàng Quốc Tế</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/14.png" alt="">
+                        <span>Laptop - Máy Vi Tính - Linh kiện</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/15.png" alt="">
+                        <span>Giày - Dép nam</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/16.png" alt="">
+                        <span>Điện Tử - Điện Lạnh</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/17.png" alt="">
+                        <span>Giày - Dép nữ</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/18.png" alt="">
+                        <span>Máy Ảnh - Máy Quay Phim</span>
+                    </a>
+                    
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/19.png" alt="">
+                        <span>Phụ kiện thời trang</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/20.png" alt="">
+                        <span>NGON</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        
+                            <img src="./Asset/index/picture/sidebar1/21.png" alt="">
+                        
+                        <span>Đồng hồ và Trang sức</span>
+
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/22.png" alt="">
+                        <span>Balo và Vali</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/23.png" alt="">
+                        <span>Voucher - Dịch vụ</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/24.png" alt="">
+                        <span>Túi thời trang nữ</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/25.png" alt="">
+                        <span>Túi thời trang nam</span>
+                    </a>
+                </div>
+                <div class="part">
+                    <a href="">
+                        <img src="./Asset/index/picture/sidebar1/26.png" alt="">
+                        <span>Chăm sóc nhà cửa</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar2">
+                <div class ="slider">
+                    <div class ="s_auto">
+                        <img src="./Asset/index/picture/slideshow/1.png" alt="">
+                        <img src="./Asset/index/picture/slideshow/2.png" alt="">
+                    </div>
+                    <div class ="status">
+                        <div class ="slide"></div>
+                        <div class ="slide_active"></div>
+                        <div class ="slide"></div>
+                    </div>
+                </div>
+                <div class ="categories">
+                    <button  onclick="filter('topdeal')" id="topdeal">
+                        <div class ="part "> 
+                            <img src="./Asset/index/picture/categories/1.png" alt="">
+                            <span style ="color:rgb(217, 56, 67);">TOP DEAL</span>
+                        </div>
+                    </button>
+                    <button id ="trading" onclick="filter('trading')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/2.png" alt="">
+                            <span >Tiki Trading</span>
+                        </div>
+                    </button>
+                    <button id ="coupon" onclick="filter('coupon')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/3.png" alt="">
+                            <span >Coupon siêu hot</span>
+                        </div>
+                    </button>
+                    <button id ="xakho" onclick="filter('xakho')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/4.png" alt="">
+                            <span >Xả kho giảm nửa giá</span>
+                        </div>
+                    </button>
+                    <button id ="hangngoai" 
+                    onclick="filter('hangngoai')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/5.png" alt="">
+                            <span >Hàng ngoại giá hot</span>
+                        </div>
+                    </button>
+                    <button id ="mechambe" onclick="filter('mechambe')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/6.png" alt="">
+                            <span >Cùng mẹ chăm bé</span>
+                        </div>
+                    </button>
+                    <button id ="book" onclick="filter('book')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/7.png" alt="">
+                            <span >Mọt sách Tiki</span>
+                        </div>
+                    </button>
+                    <button id ="technology" onclick="filter('technology')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/8.png" alt="">
+                            <span >Thế giới công nghệ</span>
+                        </div>
+                    </button>
+                    <button id ="kitchen" onclick="filter('kitchen')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/9.png" alt="">
+                            <span >Yêu bếp nghiện nhà</span>
+                        </div>
+                    </button>
+                    <button id ="beauti" onclick="filter('beauti')">
+                        <div class ="part">
+                            <img src="./Asset/index/picture/categories/10.png" alt="">
+                            <span > Khỏe đẹp toàn diện</span>
+                        </div>
+                    </button>
+                    
+                </div>
+                <div class ="all_product" id ="all_product_td">
+                    <div class ="top">
+                        <span id ="categories_name" style ="font-weight: 500;font-size: 20px;">Danh sách sản phẩm</span>
+                        <a href="" style ="font-weight: 500;">Xem tất cả</a>
+                    </div>
+                    <div id="list_product_topdeal" class="my-class row align-items-start">
+                         
+                    </div> 
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <div style ="height: 2px;"></div>
+ 
+    
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <!-- axios cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- slickslider -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="index.js"></script>
+    
+</body>
+
+</html>

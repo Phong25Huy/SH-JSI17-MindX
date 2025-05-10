@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt Hàng - Cửa Hàng Trực Tuyến</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="order.css" rel="stylesheet" />
+  </head>
+  <body data-aos="fade-up">
+    <header>
+      <div class="header_container">
+          <div class="logo_container">
+              <a href="./index.html">
+                  <img src="./Asset/index/picture/logo.png" alt="Logo">
+                  <span>Tốt & Nhanh</span>
+              </a>
+          </div>
+          <div class="searchbar_container">
+            <div class="top">
+                <div class="searchbar">
+                    <img src="./Asset/index/picture/i_search.png" alt="">
+                    <input type="text" value="" placeholder="Giao nhanh 2H & đúng khung giờ"
+                        id="search_input_value">
+                    <a href="">
+                        <button id="search_find" href="">Tìm kiếm</button>
+                    </a>
+                </div>
+                <div class="more" id ="more">
+                    <a href="./index.html">
+                        <button id="home">
+                            <img src="./Asset/index/picture/home.png" alt="">
+                            <span>Trang chủ</span>
+                        </button>
+                    </a>
+                        <button  id="user" style ="width: 100px;height: 42.4px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; text-overflow:clip;">
+                            <a href="./signin.html" id ="link_login" style = "display:flex">
+                                <img src="./Asset/index/picture/user.png" alt="">
+                                <div id ="account_name" style = "color:grey;font-weight: 500;font-size: 14px;margin-left: 5px;padding-right:16px;">
+                                    Tài khoản
+                                </div>
+                            </a>
+                        </button>
+                    <div id = "btn_logout" style ="display: none;font-size: 20px;margin-left: 12px;">
+                            <div class="c   ol_line"></div>
+                            
+                                <button  onclick = "logout()" id = "logout" style ="padding: 4px 12px;">
+                                    <i class="fa-solid fa-right-from-bracket fa-rotate-by" style="color:grey; --fa-rotate-angle: 0deg;"></i>
+                                </button>
+                            
+                    </div>
+                    <div class="giohang">
+                        <div class="col_line"></div>
+                        <a href="./order.html">
+                            <button id="cart">
+                                <img src="./Asset/index/picture/cart.png" alt="">
+                                <span id="soluong">0</span>
+                            </button>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+              <div class="bot">
+                  <div class="suggest">
+                      <a href="" id="suggest_value" suggest_index="0">điện gia dụng</a>
+                      <a href="" id="suggest_value" suggest_index="1">xe cộ</a>
+                      <a href="" id="suggest_value" suggest_index="2">mẹ & bé</a>
+                      <a href="" id="suggest_value" suggest_index="3">khỏe đẹp</a>
+                      <a href="" id="suggest_value" suggest_index="4">nhà cửa</a>
+                      <a href="" id="suggest_value" suggest_index="5">sách</a>
+                      <a href="" id="suggest_value" suggest_index="6">thể thao</a>
+                  </div>
+                  <div class="delivery">
+                      <img src="./Asset/index/picture/address.png" alt="">
+                      <span>Giao đến:</span>
+                      <a href="" id="address">TP. Thủ Đức, P. Thảo Điền, Hồ Chí Minh</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- place navbar here -->
+  </header>
+  <div class="commit">
+    <a href="">
+        <div>
+            <span>Cam kết</span>
+        </div>
+        <div class="muccamket">
+            <div class="part">
+                <img src="./Asset/index/picture/Camket/1.png" alt="">
+                <span>100% hàng thật</span>
+            </div>
+        </div>
+        <div class="col_line"></div>
+        <div class="muccamket">
+            <div class="part">
+                <img src="./Asset/index/picture/Camket/2.png" alt="">
+                <span>Hoàn 200% nếu hàng giả</span>
+            </div>
+        </div>
+        <div class="col_line"></div>
+        <div class="muccamket">
+            <div class="part">
+                <img src="./Asset/index/picture/Camket/3.png" alt="">
+                <span>30 ngày đổi trả</span>
+            </div>
+        </div>
+        <div class="col_line"></div>
+        <div class="muccamket">
+            <div class="part">
+                <img src="./Asset/index/picture/Camket/4.png" alt="">
+                <span>Giao nhanh 2h</span>
+            </div>
+        </div>
+        <div class="col_line"></div>
+        <div class="muccamket">
+            <div class="part">
+                <img src="./Asset/index/picture/Camket/5.png" alt="">
+                <span>Giá siêu rẻ</span>
+            </div>
+        </div>
+        
+    </a>
+</div>
+    <div class="container" style ="margin:20px auto;">
+        <h1 class="text-center mb-4">Đặt Hàng</h1>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Giỏ Hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                    <th>Sản Phẩm</th>
+                                    
+                                    <th>Giá gốc</th>
+                                    <th>Giá sau khi giảm</th>
+                                    <th></th>
+                                    </tr>
+                                </thead>
+                        <tbody id="cart-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Thông Tin Giao Hàng</h5>
+                    </div>
+                    <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="name" class="form-label">Họ Tên</label>
+                        <input type="text" class="form-control" id="name" required />
+                        </div>
+                        <div class="mb-3">
+                        <label for="address" class="form-label">Địa Chỉ</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="address"
+                            required
+                        />
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="city" class="form-label">Thành Phố</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="city"
+                            required
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="postal" class="form-label">Mã Bưu Điện</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="postal"
+                            required
+                            />
+                        </div>
+                        </div>
+                        <div class="mb-3">
+                        <label for="phone" class="form-label">Số Điện Thoại</label>
+                        <input type="tel" class="form-control" id="phone" required />
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Tổng Đơn Hàng</h5>
+                    </div>
+                    <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                        Tổng tiền hàng
+                        <span id ="pricetotal"></span>
+                        </li>
+                        <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                        Phí vận chuyển
+                        <span id ="transportfee"></span>
+                        </li>
+                        <li
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                        >
+                        Thuế VAT (10%)
+                        <span id ="thue"></span>
+                        </li>
+                        <li
+                        class="list-group-item d-flex justify-content-between align-items-center fw-bold"
+                        >
+                        Tổng cộng
+                        <span id ="total"></span>
+                        </li>
+                    </ul>
+                    <div class="mt-3">
+                        <label for="promo" class="form-label">Mã Giảm Giá</label>
+                        <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="promo"
+                            placeholder="Nhập mã giảm giá"
+                        />
+                        <button class="btn btn-outline-secondary" type="button">
+                            Áp Dụng
+                        </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Phương Thức Thanh Toán</h5>
+                    </div>
+                    <div class="card-body">
+                    <div class="form-check mb-3" style ="cursor: pointer;">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="creditCard"
+                        checked
+                        />
+                        <label class="form-check-label" for="creditCard">
+                        Thẻ Tín Dụng/Ghi Nợ
+                        </label>
+                    </div>
+                    <div class="form-check mb-3" style ="cursor: pointer;">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="momo"
+                        />
+                        <label class="form-check-label" for="momo"> Ví MoMo </label>
+                    </div>
+                    <div class="form-check mb-3" style ="cursor: pointer;">
+                        <input
+                        class="form-check-input"
+                        type="radio"
+                        name="paymentMethod"
+                        id="cod"
+                        />
+                        <label class="form-check-label" for="cod">
+                        Thanh Toán Khi Nhận Hàng (COD)
+                        </label>
+                    </div>
+                    <button class="btn btn-primary w-100 mt-3" type="submit" style ="cursor: pointer;">
+                        Đặt Hàng
+                    </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+      integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="order.js"></script>
+  </body>
+</html>
