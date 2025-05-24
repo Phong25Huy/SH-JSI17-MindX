@@ -1,12 +1,162 @@
 [
-    {
-        "id": 1  ,
-        "name": "Iphone",
-        "price": 1000 ,
-        "categories": "điện tử",
-        "image": "https://salt.tikicdn.com/ts/tikimsp/ee/10/70/1d457748b261c5499b4814a11ed85488.jpg" ,
-        "sale": 0, 
-        "rate": 0,
-        "time_delivery": "thứ 3 tuần sau"
-    }
+  {
+    "name": "Không gia đình",
+    "price": "100000",
+    "categories": "topdeal",
+    "image": "./Asset/index/picture/topdeal_product/1.png",
+    "sale": "25",
+    "rate": 80,
+    "delivery_time": "Ngày mai",
+    "id": "1"
+  },
+  {
+    "name": "Tai nghe sony WH-1000XM5",
+    "price": "4500000",
+    "categories": "topdeal",
+    "image": "./Asset/index/picture/topdeal_product/2.png",
+    "sale": "30",
+    "rate": 80,
+    "delivery_time": "Tuần sau",
+    "id": "2"
+  },
+  {
+    "name": "Nồi cơm điện",
+    "price": "1200000",
+    "categories": "topdeal",
+    "image": "./Asset/index/picture/topdeal_product/3.png",
+    "sale": "15",
+    "rate": 80,
+    "delivery_time": "2 tuần sau",
+    "id": "3"
+  },
+  {
+    "name": "String, 6 lon",
+    "price": "50000",
+    "categories": "topdeal",
+    "image": "./Asset/index/picture/topdeal_product/4.png",
+    "sale": "5",
+    "rate": 80,
+    "delivery_time": "Ngày thứ ba",
+    "id": "4"
+  },
+  {
+    "name": "Iphone 11",
+    "price": "10000000",
+    "categories": "xakho",
+    "image": "./Asset/index/picture/topdeal_product/5.png",
+    "sale": "30",
+    "rate": 80,
+    "delivery_time": "Ngày thứ 6",
+    "id": "5"
+  },
+  {
+    "name": "Bình nước",
+    "price": "321000",
+    "categories": "xakho",
+    "image": "./Asset/index/picture/topdeal_product/6.png",
+    "sale": "25",
+    "rate": 80,
+    "delivery_time": "Ngày mai",
+    "id": "6"
+  },
+  {
+    "name": "Túi đựng",
+    "price": "342000",
+    "categories": "xakho",
+    "image": "./Asset/index/picture/topdeal_product/7.png",
+    "sale": "20",
+    "rate": 82,
+    "delivery_time": "Ngày thứ 2",
+    "id": "7"
+  },
+  {
+    "name": "Bánh quy",
+    "price": "250000",
+    "categories": "xakho",
+    "image": "./Asset/index/picture/topdeal_product/8.png",
+    "sale": "40",
+    "rate": 82,
+    "delivery_time": "Ngày thứ 4",
+    "id": "8"
+  },
+  {
+    "name": "Giấy thấm dầu",
+    "price": "321000",
+    "categories": "trading",
+    "image": "./Asset/index/picture/topdeal_product/9.png",
+    "sale": "30",
+    "rate": 82,
+    "delivery_time": "Ngày thứ 2",
+    "id": "9"
+  },
+  {
+    "name": "Kem chống nắng",
+    "price": "350000",
+    "categories": "trading",
+    "image": "./Asset/index/picture/topdeal_product/10.png",
+    "sale": "32",
+    "rate": 82,
+    "delivery_time": "Ngày thứ 5",
+    "id": "10"
+  },
+  {
+    "name": "Sữa rửa mặt",
+    "price": "320000",
+    "categories": "trading",
+    "image": "./Asset/index/picture/topdeal_product/11.png",
+    "sale": "27",
+    "rate": 82,
+    "delivery_time": "Ngày mai",
+    "id": "11"
+  },
+  {
+    "name": "Key microsoft",
+    "price": "1270000",
+    "categories": "trading",
+    "image": "./Asset/index/picture/topdeal_product/12.png",
+    "sale": "30",
+    "rate": 82,
+    "delivery_time": "Tuần sau",
+    "id": "12"
+  },
+  {
+    "name": "Bình cho bé",
+    "price": "321000",
+    "categories": "mechambe",
+    "image": "./Asset/index/picture/topdeal_product/13.png",
+    "sale": "30",
+    "rate": 82,
+    "delivery_time": "Ngày thứ 2",
+    "id": "13"
+  },
+  {
+    "name": "Ghế ngồi trên xe cho bé",
+    "price": "1500000",
+    "categories": "mechambe",
+    "image": "./Asset/index/picture/topdeal_product/14.png",
+    "sale": "25",
+    "rate": 41,
+    "delivery_time": "delivery_time 14",
+    "id": "14"
+  },
+  {
+    "name": "Xe đẩy cho bé",
+    "price": "2700000",
+    "categories": "mechambe",
+    "image": "./Asset/index/picture/topdeal_product/15.png",
+    "sale": "45",
+    "rate": 71,
+    "delivery_time": "Ngày thứ 4",
+    "id": "15"
+  },
+  {
+    "name": "Sữa tắm cho bé",
+    "price": "200000",
+    "categories": "mechambe",
+    "image": "./Asset/index/picture/topdeal_product/16.png",
+    "sale": "18",
+    "rate": 96,
+    "delivery_time": "Ngày mai",
+    "id": "16"
+  }
 ]

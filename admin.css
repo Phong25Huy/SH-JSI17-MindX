@@ -508,3 +508,29 @@ svg{
     box-shadow: rgba(0, 55, 255, 0.374) 0px 0px 20px;
 }
 
+.all_product input{
+    border-radius: 10px;
+    min-height: 30px;
+    padding: 5px;
+    font-size: 14px;
+}
+#input_link{
+    width: 100%;
+    margin-bottom: 140px;
+}
+#input_name{
+    margin-bottom: 10px;
+}
+#input_price{
+    
+}
+#input_sale{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#input_time{
+    margin-top: 10px;
+}
+#input_categories{
+    margin-bottom: 10px;
+}
