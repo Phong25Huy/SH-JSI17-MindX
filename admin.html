@@ -43,7 +43,7 @@
     </head>
     <body>
 
-        <header>
+        <!-- <header>
             <div class="header_container">
                 <div class="logo_container">
                     <a href="">
@@ -114,54 +114,46 @@
                     </div>
                 </div>
             </div>
-        <!-- place navbar here -->
-        </header>
         
-        <div class="commit">
-            <a href="">
-                <div>
-                    <span>Cam kết</span>
-                </div>
-                <div class="muccamket">
-                    <div class="part">
-                        <img src="./Asset/index/picture/Camket/1.png" alt="">
-                        <span>100% hàng thật</span>
+        </header> -->
+        
+        
+        <main style ="display:flex;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 280px;background-color: white;"> 
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                        <img src="./Asset/index/picture/logo.png" alt="" style ="width: 96px;height:40px">
+                        <span  style ="color: rgb(10, 104, 255);font-size: 20px;font-weight: 500;margin-left: 20px;">Admin</span> 
+                    </a> 
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto"> 
+                            <li class="nav-item">
+                                <a href="./admin.html" class="nav-link active" aria-current="page" id = "products">
+                                    <i class="fa-solid fa-house" style="margin-right: 8px;font-size: 25px;"></i>
+                                    Danh sách sản phẩm
+                                </a>
+                            </li>
+                            <li> 
+                                <a href="#" class="nav-link" onclick ="generate_list_user()" id ="accounts">
+                                    
+                                    <i class="fa-solid fa-users-rectangle" style="margin-right: 8px;font-size: 25px;"></i>
+                                    Danh sách tài khoản
+                                </a>
+                            </li>
+                            
+                    </ul>
+                    <hr> 
+                    <div class="dropdown"> 
+                        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"> <strong>Admin</strong> </a> 
+                        <ul class="dropdown-menu text-small shadow"> 
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li> 
+                        </ul>
                     </div>
-                </div>
-                <div class="col_line"></div>
-                <div class="muccamket">
-                    <div class="part">
-                        <img src="./Asset/index/picture/Camket/2.png" alt="">
-                        <span>Hoàn 200% nếu hàng giả</span>
-                    </div>
-                </div>
-                <div class="col_line"></div>
-                <div class="muccamket">
-                    <div class="part">
-                        <img src="./Asset/index/picture/Camket/3.png" alt="">
-                        <span>30 ngày đổi trả</span>
-                    </div>
-                </div>
-                <div class="col_line"></div>
-                <div class="muccamket">
-                    <div class="part">
-                        <img src="./Asset/index/picture/Camket/4.png" alt="">
-                        <span>Giao nhanh 2h</span>
-                    </div>
-                </div>
-                <div class="col_line"></div>
-                <div class="muccamket">
-                    <div class="part">
-                        <img src="./Asset/index/picture/Camket/5.png" alt="">
-                        <span>Giá siêu rẻ</span>
-                    </div>
-                </div>
-                
-            </a>
-        </div>
-        <main>
+            </div>
             <div class="b_container">
-                <div class="sidebar1 d-none d-xl-block">
+                <!-- <div class="sidebar1 d-none d-xl-block">
                     <p>Danh mục</p>
                     <div class="part">
                         <a href="">
@@ -323,10 +315,10 @@
                             <span>Chăm sóc nhà cửa</span>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="sidebar2">
-                    <div class ="slider">
+                    <!-- <div class ="slider">
                         <div class ="s_auto">
                             <img src="./Asset/index/picture/slideshow/1.png" alt="">
                             <img src="./Asset/index/picture/slideshow/2.png" alt="">
@@ -400,7 +392,7 @@
                             </div>
                         </button>
                         
-                    </div>
+                    </div> -->
                     <div class ="all_product" id ="all_product_td">
                         
                         <div class ="top">
@@ -450,6 +442,7 @@
         <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
         <script src="ad_render_product.js"></script>
+        
 
 
         <script src ="admin.js"></script>

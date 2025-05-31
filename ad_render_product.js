@@ -66,7 +66,7 @@ db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnap
             querySnapshot.forEach((doc) => {
                 product_list.push(doc.data().name);
                 const product_info = doc.data();
-                console.log("Student:",  product_info);
+                console.log("Sản phẩm",  product_info);
                 // const StudentId = doc.id;
                 
                 if (String(product_info.price).length > 3){
@@ -120,6 +120,13 @@ db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnap
         })
     // console.log("Current cities in CA: ", Student.join(", "));
 
+
+function removeVietnameseTones(str) {
+    return str.normalize("NFD") // Tách chữ và dấu
+              .replace(/[\u0300-\u036f]/g, "") // Loại bỏ dấu
+              .replace(/đ/g, "d") // Thay thế riêng chữ đ
+              .replace(/Đ/g, "D");
+}
 //Thêm sản phẩm
 function add_Product() {
     let name = document.getElementById("input_name").value
@@ -144,6 +151,7 @@ function add_Product() {
         // Thêm user vào Firestore
         db.collection("product-list").add({
             name: name,
+            search: removeVietnameseTones(name).toUpperCase(),
             price: price,
             sale: sale,
             image: link,

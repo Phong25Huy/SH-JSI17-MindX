@@ -17,6 +17,11 @@ header{
     z-index: 2;
     top:0;
 }
+#search_history{
+    position: fixed;
+    z-index: 0;
+    top: 50px;
+}
 button{
     border: none;
     background-color: white;
