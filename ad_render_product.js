@@ -25,7 +25,8 @@ const db = firebase.firestore();
 const storage = firebase.storage();
 
 //Render sản phẩm
-db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
+var render_product = function(){
+    db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
     const product_list = [];
     
     var container = document.getElementById("list_product_topdeal")
@@ -118,6 +119,8 @@ db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnap
                 container.innerHTML = htmls          
             });
         })
+}
+render_product()
     // console.log("Current cities in CA: ", Student.join(", "));
 
 
@@ -168,4 +171,11 @@ function add_Product() {
         });
         
     }
+}
+
+var generate_list_product = function(){
+    render_product()
+    document.getElementById("categories_name").innerHTML = "Danh sách sản phẩm"
+    document.getElementById("accounts").classList.remove("active")
+    document.getElementById("products").classList.add("active")
 }

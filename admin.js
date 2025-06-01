@@ -105,8 +105,8 @@ var generate_list_user = function(){
             <thead>
                 <tr>
                     <th>Họ tên</th>
-                    <th>Email</th>
-                    <th>Liên hệ</th>
+                    <th style ="width:33%;">Email</th>
+                    <th>Liên hệ </th>
                     <th>Vai trò</th>
                     <th>Hành động</th>
                 </tr>
@@ -126,15 +126,24 @@ var generate_list_user = function(){
     
             var container = document.getElementById("list_user")
 
-            var htmls = '';
+            var htmls = `<tr>
+                    <td><input type="text" id="inp_name" placeholder="Nhập tên tài khoản"></td>
+                    <td><input type="text"  id="inp_gmail" placeholder="Nhập gmail" >
+                    <input type="text"  id="inp_password" placeholder="Nhập mật khẩu" style ="width:40%"></td>
+                    
+                    <td><input type="text" id ="inp_phone" placeholder="Nhập SĐT"></td>
+                    <td><input type="text" id ="inp_role" placeholder="Nhập vai trò"></td>
+                    <td id ="role_btn">
+                      <a href="#" class="action-btn" onclick ="add_account()"> Thêm</a>
+                    </td>
+                </tr>`;
             querySnapshot.forEach((doc) => {
                 user_list.push(doc.data().name);
                 const user_info = doc.data();
                 console.log("Người dùng",  user_info);
                 // const StudentId = doc.id;
-                
-                
-                htmls += `
+                if (user_info.role == "user"){
+                    htmls += `
                             <tbody>
                                 <tr>
                                     <td>${user_info.name}</td>
@@ -149,10 +158,79 @@ var generate_list_user = function(){
                                 
                             </tbody>
                         `;
+                }
+                else{
+                    htmls += `
+                            <tbody>
+                                <tr>
+                                    <td>${user_info.name}</td>
+                                    <td>${user_info.email}</td>
+                                    <td>${user_info.phone}</td>
+                                    <td>${user_info.role}</td>
+                                    <td>
+                                        <a href="#" class="action-btn">Sửa</a>
+                                        
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        `;
+                }
+                
                 container.innerHTML = htmls          
             });
         })
 }
+
+//Thêm tài khoản
+function add_account() {
+    let name = document.getElementById("inp_name").value
+    let gmail = document.getElementById("inp_gmail").value
+    let phone =document.getElementById("inp_phone").value
+    let role = document.getElementById("inp_role").value
+    let password = document.getElementById("inp_password").value
+    if (name == "" || gmail == "" || phone == "" || role == "") {
+        alert("Vui lòng điền đủ các trường");
+        return;
+    }
+    else if(!gmail.includes('@')){
+        alert("Điền đúng cú pháp gmail")
+    }
+    else if(phone.length != 10){
+        alert("Điền đúng cú pháp SĐT")
+    }
+    else if(role != 'admin' & role != 'user'){
+        
+            alert("Vui lòng chỉ điền admin hoặc user")
+        
+    }
+    else if(password < 8){
+        alert("password cần có 8 kí tự")
+    }
+    else{
+        console.log("đang thêm")
+        // Thêm user vào Firestore
+        db.collection("account-list").add({
+            name: name,
+            email: gmail,
+            password: password,
+            phone: phone,
+            role: role,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            location.reload();
+            generate_list_user()
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+        
+    }
+}
+
+
 // function renderProduct(product_info) {
 //     var productElement = document.getElementById("list_product_topdeal");
 //     var htmlelement = `
