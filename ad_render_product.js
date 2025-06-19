@@ -25,6 +25,12 @@ const db = firebase.firestore();
 const storage = firebase.storage();
 
 //Render sản phẩm
+var generate_list_product = function(){
+    render_product()
+    document.getElementById("categories_name").innerHTML = "Danh sách sản phẩm"
+    document.getElementById("accounts").classList.remove("active")
+    document.getElementById("products").classList.add("active")
+}
 var render_product = function(){
     db.collection("product-list").orderBy("createdAt", "desc").onSnapshot((querySnapshot) => {
     const product_list = [];
@@ -80,7 +86,7 @@ var render_product = function(){
                     
                 }
                 htmls += `
-                        <div class ="product col-sm-6 col-md-4 col-lg-3">
+                        <div class ="product col-sm-6 col-md-4 col-lg-3" id ="${doc.id}"> 
                             <img src="${product_info.image}" alt="" id = "image">
                             <p id ="name">${product_info.name}</p>
                             <div id ="rate">
@@ -89,7 +95,7 @@ var render_product = function(){
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i class="fa-solid fa-pen-to-square" onclick ="custom_product(${doc.id})"></i>
                             
                             </div>
                             <div class ="price" style ="display:flex;">
@@ -97,7 +103,7 @@ var render_product = function(){
                                     <p id = price>${newprice}</p>
                                     <span>đ<span>
                                 </div>
-                                <button id ="add_product" onclick="addProduct(${product_info.id})" alt ="thêm vào giỏ hàng">Thêm</button>
+                                <button id ="add_product" alt ="thêm vào giỏ hàng">Thêm</button>
                             </div>
                             <div class="sale" style ="display:flex;justify-content:space-between;">
                         
@@ -160,6 +166,7 @@ function add_Product() {
             image: link,
             categories: categories,
             rate: 0,
+            delivery_time:time,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((docRef) => {
@@ -173,9 +180,121 @@ function add_Product() {
     }
 }
 
-var generate_list_product = function(){
-    render_product()
-    document.getElementById("categories_name").innerHTML = "Danh sách sản phẩm"
-    document.getElementById("accounts").classList.remove("active")
-    document.getElementById("products").classList.add("active")
+//Sửa sản phẩm
+function custom_product(id){
+    db.collection("product-list").doc(id.id).get()
+    .then(doc => {
+      if (doc.exists) {
+        const data = doc.data();
+        
+        console.log("Dữ liệu:", data);
+        var custom = document.getElementById(id.id)
+        var custom_html = 
+                            `
+                            
+                                <h5>Mục thêm sản phẩm</h5>
+
+                                <div style ="display:block;">
+                                    <input type="text" placeholder="${data.image}" id ="custom_link">
+                                    <input type ="text" placeholder="${data.name}" id ="custom_name">
+                                    <input type="text" id="custom_categories" placeholder="${data.categories}">
+                                </div>
+                                
+                            
+                            
+                            
+                            <div class ="price" style ="display:flex;">
+                                <div class ="price2">
+                                    <input type="number" placeholder="${data.price}" id ="custom_price">
+                                </div>
+                                <button onclick="update_product(${doc.id})" id ="update_product" alt ="Cập nhật giỏ hàng">Update</button>
+                            </div>
+                            <div class="sale" style ="display:flex;justify-content:space-between;">
+                        
+                                <input type ="number" placeholder="${data.sale}" id ="custom_sale">
+                            
+                                <div class ="price2">
+                                    <p style ="color:red;font-weight:500;font-size:20px;"></p>
+                                </div>
+                                
+                            </div>
+                            <div class = "line"></div>
+                            <div class ="deli">
+                                <img src="./Asset/index/picture/deli_morning.png" alt="">
+                                <input type ="text" placeholder="${data.delivery_time}" id ="custom_time">
+                            </div>
+                        `;
+                        
+        custom.innerHTML =custom_html
+        
+        
+        
+      } else {
+        alert("Không tìm thấy tài khoản");
+      }
+    })
+    .catch(err => {
+      console.error("Lỗi khi lấy dữ liệu:", err);
+    });
 }
+
+//update sản phẩm
+function update_product(id){
+            let name = document.getElementById("custom_name").value
+            let link = document.getElementById("custom_link").value
+            let categories =document.getElementById("custom_categories").value
+            let price = document.getElementById("custom_price").value
+            let sale = document.getElementById("custom_sale").value
+            let time= document.getElementById("custom_time").value
+            if (name != "" || link != "" || categories != "" || price != "" || sale !="" || time !=""){
+                if (name == ""){
+                    name = document.getElementById("custom_name").placeholder
+                }
+                if (link == ""){
+                    link = document.getElementById("custom_link").placeholder
+                }
+                if (categories == ""){
+                    categories = document.getElementById("custom_categories").placeholder
+                }
+                if (price == ""){
+                    price = document.getElementById("custom_price").placeholder
+                }
+                if (sale == ""){
+                    sale = document.getElementById("custom_sale").placeholder
+                    console.log(sale)
+                    console.log(typeof(sale))
+                }
+                if (time ==""){
+                    time = document.getElementById("custom_time").placeholder
+                }
+                if (price < 1000 && price != ""){
+                    alert("Vui lòng điền giá tiền tổi thiểu 1.000 vnd")
+                }
+                if ((sale < 0 || sale > 100) && sale != ""){
+                    alert("Chỉ nhập từ 0 tới 100")
+                }
+                db.collection("product-list").doc(id.id).update({
+                    name: name,
+                    search: removeVietnameseTones(name).toUpperCase(),
+                    price: price,
+                    sale: sale,
+                    image: link,
+                    categories: categories,
+                    delivery_time:time,
+                
+                })
+                .then(() => {
+                    alert("Đã cập nhật thành công!");
+                    })
+                    .catch((error) => {
+                    console.error("Lỗi khi cập nhật:", error);
+                });
+            }
+                
+            else{
+                generate_list_product()
+            }
+        }
+
+
+

@@ -461,6 +461,19 @@ svg{
     padding: 6px 10px;
     box-shadow: rgba(0, 55, 255, 0.374) 0px 0px 20px;
 }
+.price #update_product{
+    border-radius: 8px;
+    padding: 5px 8px;
+    margin: auto 0;
+    height: 34px;
+    background: rgb(10, 104, 255); 
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+.price #update_product:hover{
+    padding: 6px 10px;
+    box-shadow: rgba(0, 55, 255, 0.374) 0px 0px 20px;
+}
 .line{
     width: 100%;
     height: 0.8px;
@@ -537,7 +550,26 @@ svg{
 #input_categories{
     margin-bottom: 10px;
 }
-
+#custom_link{
+    width: 100%;
+    margin-bottom: 140px;
+}
+#custom_name{
+    margin-bottom: 10px;
+}
+#custom_price{
+    
+}
+#custom_sale{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#custom_time{
+    margin-top: 10px;
+}
+#custom_categories{
+    margin-bottom: 10px;
+}
 /* Danh sách user */
 
 table {
@@ -581,3 +613,4 @@ table {
     .active i{
         color:white
     }
+
