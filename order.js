@@ -1,144 +1,161 @@
-var userLogin = JSON.parse(localStorage.getItem("userlogin"))
-var logout = function(){
-    localStorage.removeItem("userlogin")
-    window.location.href = "signin.html"
+
+
+const firebaseConfig = {
+            apiKey: "AIzaSyBTgc5bDWDSZgvKQYceJyVMv4qNVsbwqBQ",
+            authDomain: "tiki-project-database.firebaseapp.com",
+            projectId: "tiki-project-database",
+            storageBucket: "tiki-project-database.firebasestorage.app",
+            messagingSenderId: "74244344171",
+            appId: "1:74244344171:web:7a5bb3b07293ad5dcb642e",
+            measurementId: "G-WHYHB4GYYX"
+        };
+
+        // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = firebase.storage();
+const auth = firebase.auth()
+
+firebase.auth().onAuthStateChanged(async function(user) {
+  if (user) {
+    const userRef = db.collection("account-list").doc(user.uid);
+    const userDoc = await userRef.get();
+    const userData = userDoc.data();
+    const uid = user.uid
+    
+    
+
+    document.getElementById("account_name").innerHTML = `<p>${userData.name.slice(0,6)}</p>`;
+    document.getElementById("btn_logout").style.display = "flex";
+    document.getElementById("link_login").href = "";
+    document.getElementById("more").style.margin = "0";
+    document.getElementById("user").style.width = "100px";
+
+    
+    document.getElementById("soluong").innerHTML = userData.cart.length;
+
+    renderProductList(uid)
+  } else {
+    document.getElementById("account_name").innerHTML = "Tài khoản";
+    document.getElementById("btn_logout").style.display = "none";
+    document.getElementById("link_login").href = "./signin.html";
+    document.getElementById("more").style.margin = "0 0 0 40px";
+    document.getElementById("user").style.width = "120px";
+  }
+});
+
+// async function addProduct(id) {
+//   const user = firebase.auth().currentUser;
+//   if (!user) return alert("Bạn cần đăng nhập!");
+
+//   const userRef = db.collection("account_list").doc(user.uid);
+//   const userDoc = await userRef.get();
+//   const cart = userDoc.data().cart || [];
+
+//   cart.push(id);
+//   await userRef.update({ cart });
+
+//   document.getElementById("soluong").innerHTML = cart.length;
+//   loadCartData(cart);
+// }
+
+async function removeItem(id) {
+  
+  const user = firebase.auth().currentUser;
+
+  const userRef = db.collection("account-list").doc(user.uid);
+  const userDoc = await userRef.get();
+  let cart = await userDoc.data().cart
+  for (let i in cart){
+    if (cart[i] == id){
+      console.log(cart[i])
+      console.log(cart)
+      cart.splice(i,1)
+      console.log(cart)
+      await userRef.update({ cart });
+
+      document.getElementById("soluong").innerHTML = cart.length;
+      renderProductList(userDoc.data().uid);
+      return
+    }
+  }
+  
+  
 }
-if (userLogin){
-    document.getElementById("link_login").href = ""
-    document.getElementById("more").style.margin = "0"
-    document.getElementById("btn_logout").style.display = "flex"
-    document.getElementById("account_name").innerHTML = `<p style ="margin-bottom:0;">${userLogin.phone}</p>`
-    document.getElementById("user").style.width = "100px"
-    var addProduct = function(id){
-        var countproduct = JSON.parse(localStorage.getItem("countproduct"))
-        countproduct += 1
-        localStorage.setItem("countproduct",JSON.stringify(countproduct))
-        document.getElementById("soluong").innerHTML = JSON.parse(localStorage.getItem("countproduct"))
-            
-        var CartID = JSON.parse(localStorage.getItem("CartIDlist")) || []
-        if (CartID){
-            const Newdata = [...CartID,id]
-            localStorage.setItem("CartIDlist",JSON.stringify(Newdata))
-        }
+
+
+
+async function renderProductList(data) {
+    
+    const productListElement = document.getElementById("cart-list");
+    let htmlString = "";
+    let pricetotal = 0;
+    let count = 0;
+    const docSnap = await db.collection("account-list").doc(data).get();
+    let cartList = docSnap.data().cart
+    console.log(cartList)
+    if (cartList == ''){
+      htmlString =""
+      productListElement.innerHTML = htmlString;
     }
-    document.getElementById("soluong").innerHTML = JSON.parse(localStorage.getItem("countproduct"))
-    function removeItem(index){
-        var productIDList = JSON.parse(localStorage.getItem("CartIDlist"))
-        productIDList.splice(index,1)
-        localStorage.setItem("CartIDlist",JSON.stringify(productIDList))
+    
+    for (let index in cartList) {
+        let product_id = cartList[index]
+        db.collection("product-list").doc(product_id)
+        .onSnapshot({
+  
+            
+        }, (doc) => {
+          
+            var product = doc.data()
+            
+        count++;
         
-        axios.get("https://66c989ed8a477f50dc30e938.mockapi.io/list_product").then(function (data) {
-            var productList = data.data;
-            const myCart = JSON.parse(localStorage.getItem("CartIDlist")) || [];
-            console.log(myCart)
-            const cartData = [];
-
-            for (var index in myCart) {
-            const productId = myCart[index];
-            const product = productList.find(function (item) {
-                return item.id == productId;
-            });
-
-            cartData.push(product);
-            }
-
-            console.log(cartData);
-
-            renderProductList(cartData);
-        })
-        var countproduct = Number(JSON.parse(localStorage.getItem("countproduct")))
-        countproduct -= 1
-        localStorage.setItem("countproduct",JSON.stringify(countproduct))
-        document.getElementById("soluong").innerHTML = JSON.parse(localStorage.getItem("countproduct"))
-    }
-    function renderProductList(data) {
-        var productListElement = document.getElementById("cart-list");
-        console.log(data)
-        var htmlString = "";
-        var pricetotal = 0
-        var count = 0
         
-        for (var index in data) {
-            
-            
-            count += 1
-             
-            if (count*10000 > 999){
-                var  transportfee = String(count*10000).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            document.getElementById("transportfee").innerHTML = transportfee + " ₫"
-            if (data[index].price.length > 3){
-                var newprice = data[index].price.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                
-            }
-            var pricesale = Number(data[index].price) * (100 - Number(data[index].sale)) / 100
-            pricetotal += pricesale
-            
-            if (pricesale > 999){
-                var newpricesale = String(pricesale).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            if (pricetotal > 999){
-                var newpricetotal = String(pricetotal).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            document.getElementById("pricetotal").innerHTML = newpricetotal + " ₫"
+        const price = Number(product.price);
+        
+        const sale = Number(product.sale);
+        
+        const pricesale = price * (100 - sale) / 100;
+        
+        pricetotal += pricesale;
+        
+        const newprice = price.toLocaleString();
+        const newpricesale = pricesale.toLocaleString();
 
-            if (pricetotal/10 >1000){
-                var newvat = String(pricetotal/10).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            document.getElementById("thue").innerHTML = newvat + " ₫"
-            if (pricetotal + pricetotal/10 + count*10000 > 999){
-                var total = String(pricetotal + pricetotal/10 + count*10000).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
-            document.getElementById("total").innerHTML = total + " ₫"
-        htmlString =
-        htmlString +
-        `
-                <tr>
-                <td>
-                    <img src="${data[index].image}" alt="Giày Nike" class="img-thumbnail me-2" width="50">
-                    ${data[index].name}
-                </td>
-                
-                <td>${newprice}₫</td>
-                <td>${newpricesale}₫</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-danger" onclick ="removeItem(${index})"><i class="bi bi-trash"></i></button>
-                </td>
-                </tr>
+        htmlString += `
+        <tr>
+            <td>
+            <img src="${product.image}" alt="${product.name}" class="img-thumbnail me-2" width="50">
+            ${product.name}
+            </td>
+            <td>${newprice} ₫</td>
+            <td>${newpricesale} ₫</td>
+            <td><button class="btn btn-sm btn-outline-danger" onclick="removeItem('${doc.id}')"><i class="bi bi-trash"></i></button></td>
+        </tr>
         `;
-    }
+        const thue = (pricetotal / 10).toLocaleString();
+        const transportfee = (count * 10000).toLocaleString();
+        const total = (pricetotal + pricetotal / 10 + count * 10000).toLocaleString();
 
-    productListElement.innerHTML = htmlString;
-    }
-    axios
-    .get("https://66c989ed8a477f50dc30e938.mockapi.io/list_product")
-    .then(function (data) {
-        var productList = data.data;
-        const myCart = JSON.parse(localStorage.getItem("CartIDlist")) || [];
-        console.log(myCart)
-        const cartData = [];
-
-        for (var index in myCart) {
-        const productId = myCart[index];
-        const product = productList.find(function (item) {
-            return item.id == productId;
+        document.getElementById("transportfee").innerHTML = transportfee + " ₫";
+        document.getElementById("pricetotal").innerHTML = pricetotal.toLocaleString() + " ₫";
+        document.getElementById("thue").innerHTML = thue + " ₫";
+        document.getElementById("total").innerHTML = total + " ₫";
+        productListElement.innerHTML = htmlString;
         });
+        
+    }
 
-        cartData.push(product);
-        }
-
-        console.log(cartData);
-
-        renderProductList(cartData);
-    })
-}
-else{
-  document.getElementById("link_login").href = "./signin.html"
-  document.getElementById("account_name").innerHTML = "Tài khoản"
-  document.getElementById("btn_logout").style.display = "none"
-  document.getElementById("more").style.margin = "0 0 0 40px"
-  document.getElementById("user").style.width = "120px"
+    
 }
 
-
-
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location = "./signin.html";
+  });
+}

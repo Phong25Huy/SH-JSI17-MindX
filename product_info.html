@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trang chi tiết sản phẩm</title>
+        <link rel="shortcut icon" type="image/png" href="./Asset/index/picture/tikilogo_title.png">
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Ulkit -->
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+            integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Chèn google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
+        <!-- Chèn font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- slickslider -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
+            integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
+            integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">    
+        <!-- index.css -->
+        <link rel="stylesheet" href="product_info.css">
+        
+    </head>
+    <body>
+
+        <header>
+        <div class="header_container">
+            <div class="logo_container">
+                <a href="">
+                    <img src="./Asset/index/picture/logo.png" alt="Logo">
+                    <span>Tốt & Nhanh</span>
+                </a>
+            </div>
+            <div class="searchbar_container">
+                <div class="top">
+                    
+                        <div class="searchbar">
+                            <img src="./Asset/index/picture/i_search.png" alt="">
+                            <input type="text" value="" placeholder="Giao nhanh 2H & đúng khung giờ"
+                                id="search_input_value">
+                            
+                                <button id="search_find"  >Tìm kiếm</button>
+                            
+                        </div>
+                        <!-- <div id ="search_history" >
+                            <p>Nồi</p>
+                            <p>Cơm</p>
+                            <p>Điện</p>
+                        </div> -->
+                    
+                    <div class="more" id ="more">
+                        <a href="">
+                            <button id="home">
+                                <img src="./Asset/index/picture/home.png" alt="">
+                                <span>Trang chủ</span>
+                            </button>
+                        </a>
+                            <button  id="user" style ="width: 100px;height: 42.4px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; text-overflow:clip;">
+                                <a href="./signin.html" id ="link_login" style = "display:flex">
+                                    <img src="./Asset/index/picture/user.png" alt="">
+                                    <div id ="account_name" style = "color:grey;font-weight: 500;font-size: 14px;margin-left: 5px;padding-right:16px;">
+                                        Tài khoản
+                                    </div>
+                                </a>
+                            </button>
+                        <div id = "btn_logout" style ="display: none;font-size: 20px;margin-left: 12px;">
+                                <div class="c   ol_line"></div>
+                                
+                                    <button  onclick = "Logout()" id = "logout" style ="padding: 4px 12px;">
+                                        <i class="fa-solid fa-right-from-bracket fa-rotate-by" style="color:grey; --fa-rotate-angle: 0deg;"></i>
+                                    </button>
+                                
+                        </div>
+                        <div class="giohang">
+                            <div class="col_line"></div>
+                            <a href="./order.html">
+                                <button id="cart">
+                                    <img src="./Asset/index/picture/cart.png" alt="">
+                                    <span id="soluong">0</span>
+                                </button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="bot">
+                    <div class="suggest">
+                        <a href="" id="suggest_value" suggest_index="0">điện gia dụng</a>
+                        <a href="" id="suggest_value" suggest_index="1">xe cộ</a>
+                        <a href="" id="suggest_value" suggest_index="2">mẹ & bé</a>
+                        <a href="" id="suggest_value" suggest_index="3">khỏe đẹp</a>
+                        <a href="" id="suggest_value" suggest_index="4">nhà cửa</a>
+                        <a href="" id="suggest_value" suggest_index="5">sách</a>
+                        <a href="" id="suggest_value" suggest_index="6">thể thao</a>
+                    </div>
+                    <div class="delivery">
+                        <img src="./Asset/index/picture/address.png" alt="">
+                        <span>Giao đến:</span>
+                        <a href="" id="address">TP. Thủ Đức, P. Thảo Điền, Hồ Chí Minh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- place navbar here -->
+        </header>
+        
+        <div class="commit">
+            <a href="">
+                <div>
+                    <span>Cam kết</span>
+                </div>
+                <div class="muccamket">
+                    <div class="part">
+                        <img src="./Asset/index/picture/Camket/1.png" alt="">
+                        <span>100% hàng thật</span>
+                    </div>
+                </div>
+                <div class="col_line"></div>
+                <div class="muccamket">
+                    <div class="part">
+                        <img src="./Asset/index/picture/Camket/2.png" alt="">
+                        <span>Hoàn 200% nếu hàng giả</span>
+                    </div>
+                </div>
+                <div class="col_line"></div>
+                <div class="muccamket">
+                    <div class="part">
+                        <img src="./Asset/index/picture/Camket/3.png" alt="">
+                        <span>30 ngày đổi trả</span>
+                    </div>
+                </div>
+                <div class="col_line"></div>
+                <div class="muccamket">
+                    <div class="part">
+                        <img src="./Asset/index/picture/Camket/4.png" alt="">
+                        <span>Giao nhanh 2h</span>
+                    </div>
+                </div>
+                <div class="col_line"></div>
+                <div class="muccamket">
+                    <div class="part">
+                        <img src="./Asset/index/picture/Camket/5.png" alt="">
+                        <span>Giá siêu rẻ</span>
+                    </div>
+                </div>
+                
+            </a>
+        </div>
+        <div id = navigate>
+            <a href="">Trang chủ</a>
+            <span>></span>
+        </div>
+        <div class="b_container">
+            <div class="sidebar1">
+                
+            </div>
+
+            <div class="sidebar2">
+                
+            </div>
+
+            <div class ="sidebar3">
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <!-- axios cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- slickslider -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- Database -->
+        
+        <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+        <script src="product._info.js"></script>
+    </body>
+</html>

@@ -150,7 +150,8 @@ function add_account() {
                 password: password,
                 phone: phone,
                 role: role,
-                cart: 0,
+                cart: [],
+                uid: doc.id,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
         })

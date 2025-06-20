@@ -59,6 +59,8 @@ document.getElementById("form-signup").addEventListener("submit", function (e) {
             name: name,
             email: email,
             password: password,
+            cart: [],
+            uid: userCredential.user.uid,
             phone: phone,
             role: role,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -66,6 +68,7 @@ document.getElementById("form-signup").addEventListener("submit", function (e) {
     })
     .then(() => {
       alert("Đăng ký thành công!");
+      window.location ="./signin.html"
     })
     .catch((error) => {
       

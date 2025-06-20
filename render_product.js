@@ -77,7 +77,7 @@ const storage = firebase.storage();
                                     <p id = price>${newprice}</p>
                                     <span>đ<span>
                                 </div>
-                                <button id ="add_product" onclick="addProduct(${product_info.id})" alt ="thêm vào giỏ hàng">Thêm</button>
+                                <button id ="add_product" onclick="addProduct('${doc.id}')" alt ="thêm vào giỏ hàng">Thêm</button>
                             </div>
                             <div class="sale" style ="display:flex;justify-content:space-between;">
                         

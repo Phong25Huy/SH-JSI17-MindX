@@ -1,21 +1,12 @@
-var userLogin = JSON.parse(localStorage.getItem("userlogin"))
+
 var logout = function(){
-    localStorage.removeItem("userlogin")
-    window.location.href = "signin.html"
+   firebase.auth().signOut().then(() => {
+    window.location = "./signin.html";
+  });
 }
 
 
-var generate_modal = function () {
-    UIkit.modal(`<div id="modal-center" class="uk-flex-top" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical" style ="background-color: none;width:430px;bottom:150px;">
 
-        <img src="./Asset/index/picture/modal_close.png" class="uk-modal-close-default" type = "button" alt="">
-
-        <img src="./Asset/index/picture/modal.png" alt="">
-
-    </div>
-</div>`).show();
-}
 
 
 function filter(categories) {
@@ -42,10 +33,7 @@ function filter(categories) {
   
 }
 
-function Logout(){
-    firebase.auth().signOut()
-    window.location.href = "http://127.0.0.1:5500/JSI_MindX/SH-JSI17-MindX/signin.html"
-}
+
 
 
 

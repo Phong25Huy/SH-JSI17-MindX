@@ -38,9 +38,9 @@ document.getElementById("form-signin").addEventListener("submit", function (e) {
 
                 // Phân hướng
                 if (role == "admin") {
-                window.location.href = "http://127.0.0.1:5500/JSI_MindX/SH-JSI17-MindX/admin.html";
+                window.location.href = "./admin.html";
                 } else if (role == "user") {
-                window.location.href = "http://127.0.0.1:5500/JSI_MindX/SH-JSI17-MindX/index.html";
+                window.location.href = "./index.html";
                 } else {
                 alert("Lỗi vai trò");
                 }
