@@ -34,9 +34,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
     document.getElementById("link_login").href = "";
     document.getElementById("more").style.margin = "0";
     document.getElementById("user").style.width = "100px";
-
-    
-    document.getElementById("soluong").innerHTML = userData.cart.length;
+    let length = 0
+    for (let i in userData.cart){
+      length += userData.cart[i].count
+    }
+    document.getElementById("soluong").innerHTML = length
 
     renderProductList(uid)
   } else {
@@ -64,21 +66,27 @@ firebase.auth().onAuthStateChanged(async function(user) {
 // }
 
 async function removeItem(id) {
-  
+  console.log(id)
   const user = firebase.auth().currentUser;
 
   const userRef = db.collection("account-list").doc(user.uid);
   const userDoc = await userRef.get();
   let cart = await userDoc.data().cart
   for (let i in cart){
-    if (cart[i] == id){
-      console.log(cart[i])
+    if (cart[i].name == id){
+      console.log(cart[i].name)
       console.log(cart)
-      cart.splice(i,1)
+      cart[i].count --
+      if(cart[i].count == 0){
+        cart.splice(i,1)
+      }
       console.log(cart)
       await userRef.update({ cart });
-
-      document.getElementById("soluong").innerHTML = cart.length;
+      let length = 0
+      for (let i in cart){
+        length += cart[i].count
+      }
+      document.getElementById("soluong").innerHTML = length;
       renderProductList(userDoc.data().uid);
       return
     }
@@ -88,13 +96,13 @@ async function removeItem(id) {
 }
 
 
-
 async function renderProductList(data) {
-    
+    console.log(data)
     const productListElement = document.getElementById("cart-list");
     let htmlString = "";
     let pricetotal = 0;
     let count = 0;
+    
     const docSnap = await db.collection("account-list").doc(data).get();
     let cartList = docSnap.data().cart
     console.log(cartList)
@@ -104,40 +112,37 @@ async function renderProductList(data) {
     }
     
     for (let index in cartList) {
-        let product_id = cartList[index]
-        db.collection("product-list").doc(product_id)
-        .onSnapshot({
-  
-            
-        }, (doc) => {
-          
-            var product = doc.data()
-            
+    const product_id = cartList[index].name;
+    const soluong = cartList[index].count; // dùng const để giữ đúng giá trị từng lần lặp
+
+    db.collection("product-list").doc(product_id)
+      .onSnapshot({}, (doc) => {
+        var product = doc.data();
         count++;
-        
-        
+
         const price = Number(product.price);
-        
         const sale = Number(product.sale);
-        
         const pricesale = price * (100 - sale) / 100;
-        
-        pricetotal += pricesale;
-        
+        const f_total = pricesale * soluong;  // `soluong` giờ là biến cục bộ, không bị ghi đè
+
+        pricetotal += f_total;
         const newprice = price.toLocaleString();
         const newpricesale = pricesale.toLocaleString();
 
         htmlString += `
-        <tr>
-            <td>
-            <img src="${product.image}" alt="${product.name}" class="img-thumbnail me-2" width="50">
-            ${product.name}
-            </td>
-            <td>${newprice} ₫</td>
-            <td>${newpricesale} ₫</td>
-            <td><button class="btn btn-sm btn-outline-danger" onclick="removeItem('${doc.id}')"><i class="bi bi-trash"></i></button></td>
-        </tr>
+          <tr>
+              <td>
+              <img src="${product.image}" alt="${product.name}" class="img-thumbnail me-2" width="50">
+              ${product.name}
+              </td>
+              <td>${newprice} ₫</td>
+              <td>${newpricesale} ₫</td>
+              <td>${soluong}</td>
+              <td>${f_total.toLocaleString()} ₫</td>
+              <td><button class="btn btn-sm btn-outline-danger" onclick="removeItem('${doc.id}')"><i class="bi bi-trash"></i></button></td>
+          </tr>
         `;
+
         const thue = (pricetotal / 10).toLocaleString();
         const transportfee = (count * 10000).toLocaleString();
         const total = (pricetotal + pricetotal / 10 + count * 10000).toLocaleString();
@@ -147,9 +152,9 @@ async function renderProductList(data) {
         document.getElementById("thue").innerHTML = thue + " ₫";
         document.getElementById("total").innerHTML = total + " ₫";
         productListElement.innerHTML = htmlString;
-        });
-        
-    }
+    });
+}
+
 
     
 }

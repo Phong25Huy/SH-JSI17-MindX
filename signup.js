@@ -60,6 +60,7 @@ document.getElementById("form-signup").addEventListener("submit", function (e) {
             email: email,
             password: password,
             cart: [],
+            onclick: "",
             uid: userCredential.user.uid,
             phone: phone,
             role: role,

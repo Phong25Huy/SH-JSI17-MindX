@@ -55,8 +55,8 @@ const generate_list_user = () => {
                                     <td>${user_info.phone}</td>
                                     <td>${user_info.role}</td>
                                     <td>
-                                        <a href="#" onclick ="custom_account(${id})" class="action-btn">Sửa</a>
-                                        <a href="#" onclick ="delete_account(${id})" class="action-btn delete">Xóa</a>
+                                        <a href="#" onclick ="custom_account('${id}')" class="action-btn">Sửa</a>
+                                        <a href="#" onclick ="delete_account('${id}')" class="action-btn delete">Xóa</a>
                                     </td>
                                 </tr>
                                 
@@ -72,7 +72,7 @@ const generate_list_user = () => {
                                     <td>${user_info.phone}</td>
                                     <td>${user_info.role}</td>
                                     <td>
-                                        <a href="#" onclick ="custom_account(${id})" class="action-btn">Sửa</a>
+                                        <a href="#" onclick ="custom_account('${id}')" class="action-btn">Sửa</a>
                                         
                                     </td>
                                 </tr>
@@ -150,8 +150,9 @@ function add_account() {
                 password: password,
                 phone: phone,
                 role: role,
+                onclick: "",
                 cart: [],
-                uid: doc.id,
+                uid: userCredential.user.uid,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
         })
@@ -165,11 +166,21 @@ function add_account() {
 }
 
 
+
 // Xóa tài khoản
 function delete_account(id){   
-    db.collection("account-list").doc(`${id.id}`).delete()
+    console.log(id)
+    
+    db.collection("account-list").doc(`${id}`).delete()
       .then(() => {
-
+            fetch("http://localhost:3000/delete-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ uid: id})
+                })
+                .then(res => res.text())
+                .then(msg => alert(msg))
+                .catch(err => console.error(err));
             generate_list_user()
       })
       .catch((error) => {
@@ -180,13 +191,14 @@ function delete_account(id){
 
 //Sửa tài khoản
 function custom_account(id){
-    db.collection("account-list").doc(id.id).get()
+    console.log(id)
+    db.collection("account-list").doc(id).get()
     .then(doc => {
       if (doc.exists) {
         const data = doc.data();
         
         console.log("Dữ liệu:", data);
-        var custom = document.getElementById(id.id)
+        var custom = document.getElementById(id)
         var custom_html = 
                         `
                             <td><input type="text" id ="custom_name" placeholder="${data.name}"></td>
@@ -194,7 +206,7 @@ function custom_account(id){
                             <td><input type="text" id ="custom_phone" placeholder="${data.phone}"></td>
                             <td><input type="text" id ="custom_role" placeholder="${data.role}"></td>
                             <td>
-                                <a href="#" onclick ="update_account(${id.id})" class="action-btn">Cập nhật</a>                                    
+                                <a href="#" onclick ="update_account('${id}')" class="action-btn">Cập nhật</a>                                    
                                 
                             </td>
                         `
@@ -235,7 +247,7 @@ function update_account(id){
                 if (role != "user" && role !="admin"){
                     alert("Chỉ nhập user hoặc admin")
                 }
-                db.collection("account-list").doc(id.id).update({
+                db.collection("account-list").doc(id).update({
                     name: name,
                     email: email,
                     phone: phone,
@@ -248,7 +260,7 @@ function update_account(id){
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify({ uid: id.id, newEmail: email })
+                        body: JSON.stringify({ uid: id, newEmail: email })
                     })
                         .then(res => res.json())
                         .then(data => console.log(data))

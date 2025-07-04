@@ -23,6 +23,16 @@ app.post('/update-user', async (req, res) => {
     }
 });
 
+app.post("/delete-user", async (req, res) => {
+  const uid = req.body.uid;
+  try {
+    await admin.auth().deleteUser(uid);
+    res.status(200).send(`Đã xóa tài khoản có UID: ${uid}`);
+  } catch (err) {
+    res.status(500).send("Lỗi khi xóa tài khoản: " + err.message);
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server is running at http://localhost:3000");
 });

@@ -68,7 +68,7 @@
                         </div> -->
                     
                     <div class="more" id ="more">
-                        <a href="">
+                        <a href="./index.html">
                             <button id="home">
                                 <img src="./Asset/index/picture/home.png" alt="">
                                 <span>Trang chủ</span>
@@ -170,16 +170,56 @@
             <span>></span>
         </div>
         <div class="b_container">
-            <div class="sidebar1">
-                
+            <div id="sidebar1">
+                <img src="" alt="">
             </div>
 
             <div class="sidebar2">
-                
+                <div class ="info">
+                    <span style ="font-size: 20px;" id ="product_name"> </span>
+                    <div class ="price">
+                        <div class ="origin">
+                            <span id ="price"></span>
+                            <p class ="d">đ</p>
+                            <span id ="sale"></span>
+                        </div>
+                        <div id ="last_price" style ="display:flex;">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class ="sidebar3">
+                <div class ="store">
+                    <img src="https://vcdn.tikicdn.com/cache/w100/ts/seller/d1/3f/ae/13ce3d83ab6b6c5e77e6377ad61dc4a5.jpg.webp" alt="">
+                    <div class ="shop_name">
+                        <span>Tiki Trading</span>
+                        <img src="https://salt.tikicdn.com/cache/w100/ts/upload/6b/25/fb/c288b5bcee51f35f2df0a5f5f03de2e1.png.webp" alt="">
+                    </div>
+                </div>
 
+                <div class ="line"></div>
+
+                <div class ="soluong">
+                    <span>Số lượng</span>
+                    <div class ="modify_number">
+                        <button onclick="custom_removeItem()"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" alt=""></button>
+                        <input type="text" value = 1 id ="inp_number">
+                        <button onclick="custom_addItem()"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" alt=""></button>
+                    </div>
+                </div>
+                <div class ="total">
+                    <span>Tạm tính</span>
+                    <div id ="total">
+                        <span></span>
+                        <p class ="d">đ</p>
+                    </div>
+                </div>
+                <div class ="direct">
+                    
+                    <button onclick ="add_product()">Thêm vào giỏ</button>
+                </div>
             </div>
         </div>
 
@@ -217,6 +257,7 @@
         <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+        
         <script src="product._info.js"></script>
     </body>
 </html>

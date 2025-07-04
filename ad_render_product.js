@@ -23,7 +23,7 @@ const db = firebase.firestore();
 
 // Initialize Cloud Storage and get a reference to the service
 const storage = firebase.storage();
-
+const auth = firebase.auth()
 //Render sản phẩm
 var generate_list_product = function(){
     render_product()

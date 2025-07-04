@@ -450,7 +450,12 @@ svg{
     font-weight: 600;
 
 }
-.price #add_product{
+
+.add_product span,
+.add_product i {
+  pointer-events: none;
+}
+.price .add_product{
     border-radius: 8px;
     padding: 5px 8px;
     margin: auto 0;
@@ -459,7 +464,7 @@ svg{
     color: white;
     transition: 0.5s ease-in-out;
 }
-.price #add_product:hover{
+.price .add_product:hover{
     padding: 6px 10px;
     box-shadow: rgba(0, 55, 255, 0.374) 0px 0px 20px;
 }
@@ -487,7 +492,7 @@ svg{
     text-decoration: underline;
     font-size: 12px;
 }
-#sale{
+#sale {
     font-size: 15px;
     font-weight: 500;
     
